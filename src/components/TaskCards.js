@@ -12,11 +12,9 @@ export const TaskCards = () => {
 	};
 
 	const handleDragEnd = (result) => {
-		if(result.destination === null) return;
+		if (result.destination === null) return;
 		reorder(taskCardList, result.source.index, result.destination.index);
 	};
-
-	const minWidth = taskCardList.length * 300 < 1345 ? taskCardList.length * 300 : 1345;
 
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
@@ -27,13 +25,12 @@ export const TaskCards = () => {
 						{...provided.droppableProps}
 						ref={provided.innerRef}
 					>
-						<div
-							className="taskCards"
-							style={{
-								width: taskCardList.length * 300 + "px",
-								minWidth: minWidth + "px"
-							}}
-						>
+						<AddTaskCardButton
+							taskCardList={taskCardList}
+							setTaskCardList={setTaskCardList}
+						/>
+
+						<div className="taskCards">
 							{taskCardList.map((taskCard, index) => (
 								<TaskCard
 									key={taskCard.id}
@@ -45,10 +42,6 @@ export const TaskCards = () => {
 							))}
 						</div>
 
-						<AddTaskCardButton
-							taskCardList={taskCardList}
-							setTaskCardList={setTaskCardList}
-						/>
 						{provided.placeholder}
 					</div>
 				)}

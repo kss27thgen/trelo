@@ -42,6 +42,7 @@ export const TaskCard = ({
 							<>
 								<div className="separater"></div>
 								<Tasks
+									taskCard={taskCard}
 									taskList={taskList}
 									setTaskList={setTaskList}
 								/>
